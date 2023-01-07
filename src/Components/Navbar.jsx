@@ -5,14 +5,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AppsIcon from "@mui/icons-material/Apps";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import GoogleDrawer from "./GoogleDrawer";
+
+
 
 const Navbar = () => {
   return (
     <div className="header">
       <div className="header_info">
-        <IconButton>
-          <MenuIcon />
-        </IconButton>
+        <GoogleDrawer/>
         <img src="/images/225.png" />
         <div className="info">
             Forms
