@@ -1,16 +1,17 @@
+import { TableSortLabel, Tabs } from "@mui/material";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Formheader from "../Components/Formheader";
+import FormRoues from "./FormRoues";
 import HomepageRoute from "./HomepageRoute";
 
 const AllRoutes = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<HomepageRoute />}></Route>
-        <Route path="/form/:id" element={<Formheader />}></Route>
+        <Route path="/form/:id" element={<FormRoues/>}></Route>
       </Routes>
-    </div>
+    </>
   );
 };
 
