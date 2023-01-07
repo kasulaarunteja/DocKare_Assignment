@@ -1,5 +1,6 @@
 import { Paper, Tab, Tabs } from '@mui/material';
 import React from 'react';
+import "./Centeredtabs.css";
 
 const Centeredtabs = () => {
     return (
