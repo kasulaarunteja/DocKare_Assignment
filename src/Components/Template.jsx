@@ -3,13 +3,18 @@ import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import "./Template.css"
-
-
-
-
+import uuid from 'react-uuid';
+import { useNavigate } from 'react-router';
 
 
 const Template = () => {
+    const navigate = useNavigate();
+    
+    const createForm = () => {
+        const id = uuid();
+        navigate("/form/" + id);
+      }
+
     return (
         <div className='template_section'>
             <div className='template_top'>
@@ -27,7 +32,7 @@ const Template = () => {
                 </div>
             </div>
             <div className='template_body'>
-                <div className='card'>
+                <div className='card' onClick={createForm}>
                    <img src='/images/formsblank.png' className='cardimg'/>
                    <p className='card_title'>Blank</p>
                 </div>
