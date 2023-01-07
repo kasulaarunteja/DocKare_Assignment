@@ -133,3 +133,28 @@
 .text_input:focus{
     border-bottom: 1.5px solid rgb(103, 58, 183);
 }
+
+.add_footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_question_bottom{
+  margin-top: 12px;
+  border-top: 1px solid rgb(118, 118, 118, 0.3);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add_question_bottom_left{
+    margin-top:12px;
+    border-top:1px solid rgb(118, 118, 118, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.add_border{
+    border-left: 6px solid #4285f4;
+}
