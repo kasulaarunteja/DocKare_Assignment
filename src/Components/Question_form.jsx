@@ -14,6 +14,12 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import CloseIcon from '@mui/icons-material/Close';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import FilterNoneIcon from '@mui/icons-material/FilterNone';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import Switch from '@mui/material/Switch';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
 
@@ -128,6 +134,61 @@ const QuestionForm = () => {
                         </IconButton>
                     </div>
                  ))}
+
+                {(ques.option.length) < 5 ? (
+                     <div className="add_question_body">
+                        <FormControlLabel
+                           disabled
+                         control={
+                            (ques.questionType === "text") ? 
+                            <input
+                              type={ques.questionType}
+                              color="primary"
+                              inputProps={{ "aria-label": "secondary checkbox" }}
+                              style={{ marginLeft: "10px", marginRight: "10px" }}
+                              disabled
+                            />
+                           : (
+                            <ShortTextIcon style={{ marginRight: "10px" }} />
+                          )   
+                         } label={
+                            <div>
+                              <input
+                                type="text"
+                                className="text_input"
+                                style={{ fontSize: "13px", width: "60px" }}
+                                placeholder="Add other"
+                              ></input>
+                              <Button size="small" style={{ textTransform: "none", color: "#4285f4", fontSize: "13px", fontWeight: "600" }}>
+                                Add Option
+                              </Button>
+                            </div>
+                          }
+                         />
+                     </div>
+                ) : ""}   
+                     
+                 <div className="add_footer">
+                    <div className="add_question_bottom_left">
+                        <Button size="small" 
+                          style={{textTransform:'none', color:"#4285f4", fontsize:'13px', fontweight:'600'}}>
+                           <OpenInNewIcon /> Answer Key</Button>
+
+                    </div>
+                    <div className="add_question_bottom">
+                      <IconButton aria-label="Copy">
+                        <FilterNoneIcon/>
+                      </IconButton>
+                      <IconButton>
+                      <DeleteForeverOutlinedIcon/>
+                      </IconButton>
+                      <span style={{color:"#5f6368", fontsize:'13px',}}>Required</span>
+                       <Switch name="checkdA" color="primary" checked></Switch>
+                       <IconButton>
+                          <MoreVertIcon/>
+                       </IconButton>
+                    </div>
+                 </div>
             </AccordionDetails>
         </div>
       </Accordion>
