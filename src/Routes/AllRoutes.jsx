@@ -8,7 +8,7 @@ const AllRoutes = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomepageRoute />}></Route>
-        <Route path="/quetion" element={<Formheader />}></Route>
+        <Route path="/form/:id" element={<Formheader />}></Route>
       </Routes>
     </div>
   );
