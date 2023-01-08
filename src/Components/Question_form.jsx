@@ -21,6 +21,8 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
+import { DragDropContext } from "react-beautiful-dnd";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 
 
@@ -117,6 +119,31 @@ const QuestionForm = () => {
     open:true, required:false}
   ]);
   }
+
+
+  function onDragEnd(result){
+    if(!result.destination){
+      return;
+    }
+    let itemgg = [...question];
+    const items = reorder(
+      itemgg,
+      result.source.index,
+      result.destination.index
+    );
+    setQuestion(items)
+  }
+
+  const reorder =(list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+
+
+
+
 
 
   function questionUI() {
@@ -314,6 +341,21 @@ const QuestionForm = () => {
               />
             </div>
           </div>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable">
+                 {(provided, snapshot) => (
+                  <div ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+
+                    {provided.placeholder}
+                  </div>
+                 )}   
+            </Droppable>
+          </DragDropContext>
+
+
+
           {questionUI()}
         </div>
       </div>
