@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Question_form.css";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import { AccordionDetails,  IconButton,  Typography } from "@mui/material";
+import { AccordionDetails,  IconButton, Typography } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import SubjectIcon from '@mui/icons-material/Subject';
@@ -20,6 +18,9 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import Switch from '@mui/material/Switch';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
 
 
 
@@ -29,7 +30,7 @@ const QuestionForm = () => {
     {
       questionText: "wherer is the captial city of karnataka ?",
       questionType: "radio",
-      option: [
+      options: [
         { optionText: "Bengaluru" },
         { optionText: "Belgavi" },
         { optionText: "Hubli" },
@@ -40,13 +41,91 @@ const QuestionForm = () => {
     },
   ]);
 
+  function changeQuestion(text, i){
+     let newQuestion = [...question]
+     newQuestion[i].questionText = text;
+     setQuestion(newQuestion);
+     console.log(newQuestion)
+  }
+
+
+  function addQuestionType(i, type){
+    let qsti = [...question];
+    console.log(type)
+    qsti[i].questionType= type;
+    setQuestion(qsti);
+  }
+
+  function changeOptionVaule(text, i, j){
+    let optionsQuestion = [...question] 
+    optionsQuestion[i].options[j].optionText = text;
+    setQuestion(optionsQuestion)
+    console.log(optionsQuestion)
+  }
+
+  function removeOption(i, j){
+    let Removeoption = [...question]
+    if(Removeoption[i].options.length > 1){
+      Removeoption[i].options.splice(j,1)
+      setQuestion(Removeoption)
+      console.log(i +"__"+j);
+    }
+  }
+
+
+  function addOption(i){
+    let optionsofquestion = [...question];
+    if(optionsofquestion[i].options.length < 5){
+      optionsofquestion[i].options.push({
+        optionText:'option' +(optionsofquestion[i].options.length + 1)
+      })
+    }else{
+      console.log("max 5 options ")
+    }
+
+    setQuestion(optionsofquestion)
+  }
+
+
+  function copyQuestion(i){
+    
+    let quess = [...question]
+    let newquestions = quess[i];
+    setQuestion([...question, newquestions])
+  }
+
+  function deleteQuestions(i){
+    let qts = [...question]
+    if(question.length > 1){
+      qts.splice(i, 1);
+    }
+    setQuestion(qts)
+  }
+
+  // function requiredQuestion(i){
+  //   let reqQuestion = [...question];
+  //   reqQuestion[i].required = ! reqQuestion[i].required
+  //   console.log(reqQuestion[i].required+" "+i)
+  //   setQuestion(reqQuestion)
+  // }
+
+  function addmoreQuestions(){
+    setQuestion([...question,
+    {questionText:"Question", 
+    questionType:'radio', 
+    options:[{optionText:'Option 1'}], 
+    open:true, required:false}
+  ]);
+  }
+
+
   function questionUI() {
     return question.map((ques, i) => (
-      <Accordion
+      <Accordion key={i}
         expanded={ques.open}
         className={`${question[i].open ? "add border" : ""}`}
       >
-        <AccordionSummary
+        {/* <AccordionSummary
           aria-controls="panelia_content"
           id="panelia_header"
           elevation={1}
@@ -65,7 +144,7 @@ const QuestionForm = () => {
                   >
                     {i+1}.{question[i].questionText}
                 </Typography>
-                  {ques.option.map((op, j) => (
+                  {ques.options.map((op, j) => (
                     <div key={j} >
                         <div style={{ display: "flex" }}>
                             <FormControlLabel
@@ -90,7 +169,7 @@ const QuestionForm = () => {
                             color: "#202124",
                           }}
                         >
-                          {ques.option[j].optionText}
+                          {ques.options[j].optionText}
                         </Typography>
                       }
                       />
@@ -99,22 +178,32 @@ const QuestionForm = () => {
                   ))}
             </div>
           ):""}   
-        </AccordionSummary>
+        </AccordionSummary> */}
 
         <div className="question_boxes">
             <AccordionDetails className="add_question">
                 <div className="add_question_top">
                   <input type='text' className="questons" placeholder="Question"
                     value={ques.questionText}
+                    onChange={(e) => {changeQuestion(e.target.value, i)}}
                   />
                     <CropOriginalIcon  style={{color:"#5f6368"}}/>
                     <Select className="select" style={{color:'#5f6368', fontsize:'13px'}}>
-                        <MenuItem id='text' value='Text'><SubjectIcon style={{marginRight:'10px'}}/> Paragraph</MenuItem> 
-                        <MenuItem id='checkbox' value='checkbox'> <CheckBoxIcon style={{marginRight:'10px' , color:'#70757a'}} checked/>CheckBox</MenuItem>
-                        <MenuItem id='radio' value='Radio'> <RadioButtonUncheckedIcon style={{marginRight:'10px',color:'#70757a'}} Checked/>Mutiple Choices</MenuItem>
+                        <MenuItem id='text' value='Text' 
+                         onClick={() =>{addQuestionType(i, 'text')}}
+                        ><SubjectIcon style={{marginRight:'10px'}} 
+                         /> Paragraph</MenuItem> 
+                        <MenuItem id='checkbox' value='Checkbox'
+                        onClick={() =>{addQuestionType(i, 'checkbox')}}
+                        > <CheckBoxIcon style={{marginRight:'10px' , color:'#70757a'}} 
+                        />CheckBox</MenuItem>
+                        <MenuItem id='radio' value='Radio'
+                        onClick={() =>{addQuestionType(i, 'radio')}}
+                        > <RadioButtonUncheckedIcon style={{marginRight:'10px',color:'#70757a'}} 
+                        />Mutiple Choices</MenuItem>
                     </Select>
                 </div>
-                 {ques.option.map((op, j) => (
+                 {ques.options.map((op, j) => (
                     <div className="Add_question_body" key={j}>
                         {
                            (ques.questionType != 'text') ?
@@ -124,18 +213,19 @@ const QuestionForm = () => {
 
                         <div>
                             <input type="text" className="text_input" placeholder='option'
-                             value={ques.option[j].optionText}
+                             value={ques.options[j].optionText}
+                             onChange={(e) => {changeOptionVaule(e.target.value, i, j)}}
                             />
                         </div>
                         <CropOriginalIcon style={{color:"#5f6368"}} />
 
                         <IconButton aria-label="delete">
-                              <CloseIcon/>
+                              <CloseIcon onClick={() => removeOption(i,j)}/>
                         </IconButton>
                     </div>
                  ))}
 
-                {(ques.option.length) < 5 ? (
+                {(ques.options.length) < 5 ? (
                      <div className="add_question_body">
                         <FormControlLabel
                            disabled
@@ -149,7 +239,7 @@ const QuestionForm = () => {
                               disabled
                             />
                            : (
-                            <ShortTextIcon style={{ marginRight: "10px" }} />
+                            <RadioButtonUncheckedIcon style={{ marginRight: "15px" }} />
                           )   
                          } label={
                             <div>
@@ -159,7 +249,9 @@ const QuestionForm = () => {
                                 style={{ fontSize: "13px", width: "60px" }}
                                 placeholder="Add other"
                               ></input>
-                              <Button size="small" style={{ textTransform: "none", color: "#4285f4", fontSize: "13px", fontWeight: "600" }}>
+                              <Button 
+                               onClick={() => {addOption(i)}}
+                              size="small" style={{ textTransform: "none", color: "#4285f4", fontSize: "13px", fontWeight: "600" }}>
                                 Add Option
                               </Button>
                             </div>
@@ -176,20 +268,28 @@ const QuestionForm = () => {
 
                     </div>
                     <div className="add_question_bottom">
-                      <IconButton aria-label="Copy">
+                      <IconButton aria-label="Copy" onClick={() =>{copyQuestion(i)}}>
                         <FilterNoneIcon/>
                       </IconButton>
-                      <IconButton>
+                      <IconButton aria-label="delete" onClick={()=>{deleteQuestions(i)}}>
                       <DeleteForeverOutlinedIcon/>
                       </IconButton>
                       <span style={{color:"#5f6368", fontsize:'13px',}}>Required</span>
-                       <Switch name="checkdA" color="primary" checked></Switch>
+                       <Switch name="checkdA" color="primary" checked
+                        // onClick={() =>{requiredQuestion(i)}}
+                       ></Switch>
                        <IconButton>
                           <MoreVertIcon/>
                        </IconButton>
                     </div>
                  </div>
             </AccordionDetails>
+            <div className="question_edit">
+              <AddCircleOutlineIcon  onClick={addmoreQuestions} className="edit"/>
+              <OndemandVideoIcon className="edit"/>
+              <CropOriginalIcon className="edit"/>
+               <TextFieldsIcon className="edit"/>
+            </div>
         </div>
       </Accordion>
     ));

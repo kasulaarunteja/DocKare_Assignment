@@ -1,7 +1,6 @@
 import React from "react";
 import "./Navbar.css";
 import { IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AppsIcon from "@mui/icons-material/Apps";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";

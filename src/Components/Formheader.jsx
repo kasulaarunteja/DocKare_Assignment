@@ -14,7 +14,7 @@ const Formheader = () => {
         <div className='form_header'>
             <div className='form_header_left'>
             <img src="/images/225.png" style={{height:'45px',width:"40px"}} />
-            <input type='text' placeholder='Untitled form' classname="form_name" ></input>
+            <input type='text' placeholder='Untitled form' className="form_name" ></input>
             {/* <span>All changes save in Drive</span> */}
               <IconButton>
                 <StarOutlineIcon className='formheade_icon' style={{marginRight:'10px'}}/>
