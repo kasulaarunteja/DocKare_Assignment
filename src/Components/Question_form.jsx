@@ -25,6 +25,8 @@ import { FunctionsOutlined } from "@mui/icons-material";
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import {set_question} from "../Redux/actions"
+import uuid from 'react-uuid';
+
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState([
@@ -48,9 +50,16 @@ const QuestionForm = () => {
   const [docDec, setDocDec]  = useState('add Descriptions');
 
 
-
+  const id = uuid();
   function commitToDB(){
-    axios.post()
+    axios.post(`http://localhost:8080/add_question/${id}` ,{
+      "document_name":docName,
+      'doc_dec':docDec,
+      'questions':question,
+    })
+    if (question) {
+      alert("question is Added");
+    }
   }
 
 
