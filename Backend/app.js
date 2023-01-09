@@ -3,6 +3,7 @@ const fs = require('fs')
 const express = require('express');
 
 const app = express();
+const path = require('path');
 
 
 let cors = require('cors');
@@ -38,6 +39,18 @@ app.get('/data/:doc_id', (req,res) => {
         console.log(req.params.doc_id);
         res.send(ques_data);
     });
+})
+
+
+
+app.get("/get_all_filename", (req,res) => {
+  const directoryPath = path.join(__dirname, '/files');
+  fs.readdir(directoryPath, function(err, files) {
+    if(err){
+      return console.log("unable to get directory" + err);
+    }
+    res.send(files);
+  })
 })
 
 
