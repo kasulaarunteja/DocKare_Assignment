@@ -1,0 +1,68 @@
+{
+    "document_name": "untitled Documen",
+    "doc_dec": "add Descriptions",
+    "questions": [
+        {
+            "questionText": "What is the captial city",
+            "questionType": "radio",
+            "options": [
+                {
+                    "optionText": "hyderabad"
+                },
+                {
+                    "optionText": "Dehil"
+                },
+                {
+                    "optionText": "Mumbai"
+                },
+                {
+                    "optionText": "pune"
+                }
+            ],
+            "open": false,
+            "answerKey": "",
+            "points": 0,
+            "required": false
+        },
+        {
+            "questionText": "where you want to in your life ",
+            "questionType": "radio",
+            "options": [
+                {
+                    "optionText": "usa"
+                },
+                {
+                    "optionText": "uk"
+                },
+                {
+                    "optionText": "japan"
+                },
+                {
+                    "optionText": "canidan"
+                }
+            ],
+            "open": false,
+            "required": false
+        },
+        {
+            "questionText": "what is your opitons",
+            "questionType": "radio",
+            "options": [
+                {
+                    "optionText": "Option"
+                },
+                {
+                    "optionText": "option2"
+                },
+                {
+                    "optionText": "option3"
+                },
+                {
+                    "optionText": "option4"
+                }
+            ],
+            "open": false,
+            "required": false
+        }
+    ]
+}
