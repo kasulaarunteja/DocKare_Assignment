@@ -22,6 +22,9 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
 import { FunctionsOutlined } from "@mui/icons-material";
+import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import {set_question} from "../Redux/actions"
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState([
@@ -40,6 +43,17 @@ const QuestionForm = () => {
       required: false,
     },
   ]);
+
+  const [docName, setDocname] = useState('untitled Documen');
+  const [docDec, setDocDec]  = useState('add Descriptions');
+
+
+
+  function commitToDB(){
+    axios.post()
+  }
+
+
 
   function changeQuestion(text, i) {
     let newQuestion = [...question];
@@ -444,15 +458,24 @@ const QuestionForm = () => {
                 type="text"
                 className="question_form_top_name"
                 placeholder="untittled Form"
+                 onChange={(e) => {setDocname(e.target.value)}}
               />
               <input
                 type="text"
                 className="question_form_top_dec"
                 placeholder="form description"
+                onChange={(e) => {setDocDec(e.target.value)} }
               />
             </div>
           </div>
           {questionUI()}
+
+          <div className="save_form">
+             <Button variant="contained" color="primary"
+             onClick={commitToDB} style={{fontsize:'14px'}}>
+              save
+             </Button>
+          </div>
         </div>
       </div>
     </div>
